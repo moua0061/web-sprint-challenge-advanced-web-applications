@@ -1,8 +1,6 @@
 import React from 'react';
-import {render} from '@testing-library/react'; 
-
+import {render, screen} from '@testing-library/react'; 
 import userEvent from '@testing-library/user-event';
-import MutationObserver from 'mutationobserver-shim';
 
 import Article from './Article';
 
