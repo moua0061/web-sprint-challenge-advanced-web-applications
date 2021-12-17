@@ -10,7 +10,6 @@ const Logout = () => {
         axiosWithAuth()
             .post('/articles')
                 .then(resp => {
-                    
                     localStorage.removeItem('token')
                     localStorage.removeItem('username')
                     localStorage.removeItem('role')
