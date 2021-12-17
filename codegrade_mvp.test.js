@@ -103,7 +103,7 @@ describe("Login Authentication", ()=> {
     
     await waitFor(()=> {
       const title = screen.queryByText('View Articles');
-      console.log(title)
+      // console.log(title)
       expect(title).toBeInTheDocument();
     });
   });  
