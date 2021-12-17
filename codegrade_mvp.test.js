@@ -102,7 +102,8 @@ describe("Login Authentication", ()=> {
     wait = await screen.findAllByRole("button");
     
     await waitFor(()=> {
-      const title = screen.getByText('View Articles');
+      const title = screen.queryByText('View Articles');
+      console.log(title)
       expect(title).toBeInTheDocument();
     });
   });  
