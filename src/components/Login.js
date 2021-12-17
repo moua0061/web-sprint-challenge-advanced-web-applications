@@ -3,15 +3,12 @@ import styled from 'styled-components';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 
-const Login = () => {
 
-    // const initialError = {
-    //     error: ''
-    // }
+const Login = () => {
 
     const [state, setState ] = useState({});
     const {push} = useHistory();
-    // const [error, setError] = useState(initialError);
+    const [error, setError] = useState('');
 
     const handleChange =(event) => {
         setState({
@@ -21,11 +18,10 @@ const Login = () => {
     }
 
     const handleSubmit = (event) => {
-
-        console.log(state);
         event.preventDefault();
         axios.post('http://localhost:5000/api/login', state)
             .then(resp => {
+                console.log(resp)
                 const token = resp.data.token;
                 const username = resp.data.username;
                 const role = resp.data.role;
@@ -35,8 +31,12 @@ const Login = () => {
                 push('/view');
             })
             .catch(err => {
-                console.log(err);
-                // setError(err.response.data);
+                // console.log(err)
+                setError('Incorrect username / password combination.')
+                // setError({
+                //     ...error,
+                //     error: err.response.data
+                // });
             })
     }
     
@@ -69,8 +69,8 @@ const Login = () => {
                     
                     <Button id='submit'>Submit</Button>
                 </FormGroup>
-                <p id='error'>error message</p>
-                {/* <p id='error'>{state.error}</p> */}
+                {/* <p id='error'>error message</p> */}
+                <p id='error'>{error}</p>
             </ModalContainer>
         </ComponentContainer>
     );

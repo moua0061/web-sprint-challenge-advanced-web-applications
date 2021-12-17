@@ -18,7 +18,7 @@ const EditForm = (props)=> {
         axiosWithAuth()
             .get(`/articles/${editId}`)
                 .then(resp => {
-                    console.log(resp);
+                    setArticle(resp.data);
                 })
                 .catch(err => {
                     console.log(err);
