@@ -21,7 +21,6 @@ const Login = () => {
         event.preventDefault();
         axios.post('http://localhost:5000/api/login', state)
             .then(resp => {
-                console.log(resp)
                 const token = resp.data.token;
                 const username = resp.data.username;
                 const role = resp.data.role;
@@ -31,14 +30,10 @@ const Login = () => {
                 push('/view');
             })
             .catch(err => {
-                // console.log(err)
-                setError('Incorrect username / password combination.')
-                // setError({
-                //     ...error,
-                //     error: err.response.data
-                // });
+                setError(err.response.data)
             })
     }
+
     
     return(
         <ComponentContainer>
@@ -69,8 +64,7 @@ const Login = () => {
                     
                     <Button id='submit'>Submit</Button>
                 </FormGroup>
-                {/* <p id='error'>error message</p> */}
-                <p id='error'>{error}</p>
+                <p id='error'>{error.error}</p>
             </ModalContainer>
         </ComponentContainer>
     );
